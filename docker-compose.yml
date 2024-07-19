@@ -16,7 +16,7 @@ services:
   odoo:
     image: iterativodo/dockerdoo:${ODOO_VERSION}
     env_file: .env
-    
+
     restart: unless-stopped
 
     ports: ["8069:8069", "8072:8072"]
@@ -25,6 +25,7 @@ services:
       # Host paths (.ssh configuration)
       - ~/.ssh/:/opt/odoo/.ssh/:cached
       # Named volumes
+      - ./custom:${ODOO_EXTRA_ADDONS}:delegated
       - odoo-data:${ODOO_DATA_DIR}
       - odoo-testlogs:${ODOO_LOGS_DIR}
       - odoo-modules:${ODOO_EXTRA_ADDONS}
