@@ -2,8 +2,8 @@ version: "3.7"
 
 networks:
   default:
-    external:
-      name: cloudbuild
+    external: true
+    name: cloudbuild
   odoonet:
 
 volumes:
@@ -28,7 +28,6 @@ services:
       - ./custom:${ODOO_EXTRA_ADDONS}:delegated
       - odoo-data:${ODOO_DATA_DIR}
       - odoo-testlogs:${ODOO_LOGS_DIR}
-      - odoo-modules:${ODOO_EXTRA_ADDONS}
     depends_on:
       - db
 
